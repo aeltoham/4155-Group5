@@ -1,11 +1,9 @@
 {% extends 'layout.html' %}
 {% block content %}
 		<div align="center">
-
 			<!--Displaying the converted table-->
 				{% for table in tables %}					
 				{{ table|safe }}
 				{% endfor %}	
-		
 		</div>
 {% endblock %}

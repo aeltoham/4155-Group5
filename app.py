@@ -1,5 +1,5 @@
 # importing flask
-from flask import Flask, render_template
+from flask import Flask, render_template,abort
 
 # importing pandas module
 import pandas as pd
@@ -21,6 +21,14 @@ def table():
     # converting csv to html
     
     return render_template('table.html', tables=[data.to_html(classes='table')], titles=[''])
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html")
+
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template("500.html", error = e)
 
 
 if __name__ == "__main__":
