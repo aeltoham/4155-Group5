@@ -9,16 +9,18 @@ app = Flask(__name__)
 
 #reading csv file data
 #Change file path to your local machine
-df = pd.read_csv('UNCCFaculty.csv')
-df.to_csv('UNCCFaculty.csv', index=None)
+data = pd.read_csv('./static/source/UNCCFaculty.csv')
 
 # route to html page - "table"
 @app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/table')
 def table():
     # converting csv to html
-    data = pd.read_csv('UNCCFaculty.csv')
-    return render_template('table.html', tables=[data.to_html()], titles=[''])
+    
+    return render_template('table.html', tables=[data.to_html(classes='table')], titles=[''])
 
 
 if __name__ == "__main__":
