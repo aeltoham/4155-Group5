@@ -10,10 +10,11 @@
 }
 
 main{
-    min-height: 804px;
+    min-height: calc(100vh - 157px);
+}
+.footer-bar{
+    position: relative;
+    margin: 0;
+    width: 100%;
 }
 
-
-html, body {
-    height: 100%;
-}
