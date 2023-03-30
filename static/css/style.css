@@ -9,7 +9,11 @@
     top: 50px;
 }
 
-.footer-bar{
-    position: relative;
-    top: 710px;
+main{
+    min-height: 804px;
+}
+
+
+html, body {
+    height: 100%;
 }
