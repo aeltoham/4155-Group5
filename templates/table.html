@@ -1,9 +1,36 @@
 {% extends 'layout.html' %}
 {% block content %}
-		<div align="center">
-			<!--Displaying the converted table-->
-				{% for table in tables %}					
-				{{ table|safe }}
-				{% endfor %}	
+
+<script>
+	function myFunction() {
+		const userInput = document.getElementById("myInput").value.toUpperCase();
+		const tableRows = document.querySelectorAll(".dataTable tr");
+		for (let i = 0; i < tableRows.length; i++) {
+			const rowTextContent = tableRows[i].innerText.toUpperCase();
+			tableRows[i].style.display = rowTextContent.toUpperCase().includes(userInput) ? "" : "none";
+		}
+	}
+</script>
+
+<div class="search-bar-position">
+	<div class="container search-table">
+		<div class="search-box">
+			<div class="row">
+				<div class="col-md-3">
+					<h5>Search All Fields</h5>
+				</div>
+				<div class="col-md-9">
+					<input type="text" id="myInput" onkeyup="myFunction()" class="form-control"
+						placeholder="Search all fields e.g. HTML">
+
+				</div>
+			</div>
 		</div>
-{% endblock %}
+	</div>
+	<div align="center">
+		<!--Displaying the converted table-->
+		{% for table in tables %}
+		{{ table|safe }}
+		{% endfor %}
+	</div>
+	{% endblock %}
