@@ -2,3 +2,14 @@
     position: relative;
     top: 30px;
 }
+
+.Welcome-Message{
+    text-align: center;
+    position: relative;
+    top: 50px;
+}
+
+.footer-bar{
+    position: relative;
+    top: 710px;
+}
