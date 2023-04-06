@@ -20,7 +20,7 @@ def index():
 def table():
     # converting csv to html
     
-    return render_template('table.html', tables=[data.to_html(columns=['MMS ID (System Identifier)','ISBN','Author or Editor','Title','Publisher','Physical Description','Topical Subjects'],classes='table dataTable',na_rep = 'N/A')], titles=[''])
+    return render_template('table.html', tables=[data.to_html(columns=['MMS ID (System Identifier)','ISBN','Author or Editor','Title','Publisher','Physical Description','Topical Subjects'],classes='table dataTable table-striped table-bordered table-sm ',na_rep = 'N/A', table_id='dataTable')], titles=[''])
 
 @app.errorhandler(404)
 def page_not_found(e):

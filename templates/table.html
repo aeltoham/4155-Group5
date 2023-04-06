@@ -10,6 +10,19 @@
 			tableRows[i].style.display = rowTextContent.toUpperCase().includes(userInput) ? "" : "none";
 		}
 	}
+	$(document).ready(function () {
+		$('#dataTable').DataTable( {
+			
+		
+		} );
+		
+		$('#dataTable tbody').on('click', 'tr', function () {
+			$(this).toggleClass('selected');
+		});
+	  });
+	  
+	  
+	  
 </script>
 
 <div class="search-bar-position">
