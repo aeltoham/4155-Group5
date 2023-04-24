@@ -1,0 +1,38 @@
+<!--
+    Reference code:
+    https://www.w3schools.com/howto/howto_css_contact_section.asp
+-->
+
+
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="container">
+    <div style="text-align:center">
+        <h2>Contact Us</h2>
+        <p>Leave a comment with any of your questions or concerns and we will try our best to get back to you!</p>
+    </div>
+    <div class="row">
+        <div class="column">
+            <img src="../static/images/norm.gif" alt="Norm the Niner">
+        </div>
+        <div class="column">
+            <form action="/contact" method="POST">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                <label for="subject">Subject</label>
+                <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

@@ -8,9 +8,9 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
+
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-    
+
     <link rel="stylesheet" href="../static/css/style.css">
 
     <title>Home Page</title>
@@ -42,13 +42,25 @@
 
 
                 <li class="nav-item ">
-                    <a class="nav-link text-light" href="">Contact</a>
+                    <a class="nav-link text-light" href="/contact">Contact</a>
                 </li>
 
             </ul>
         </div>
     </nav>
 </head>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="flashMessage">
+<ul class=flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+</div>
+{% endif %}
+{% endwith %}
 
 <body>
     <script type="text/javascript" src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
@@ -62,14 +74,14 @@
     </main>
 
     <div class="footer-bar">
-    <footer class="bg-success text-center text-lg-start">
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2023 Copyright:
-            <a class="text-dark" href="https://charlotte.edu"> Charlotte.edu </a>
-        </div>
-        <!-- Copyright -->
-    </footer>
+        <footer class="bg-success text-center text-lg-start">
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2023 Copyright:
+                <a class="text-dark" href="https://charlotte.edu"> Charlotte.edu </a>
+            </div>
+            <!-- Copyright -->
+        </footer>
     </div>
 
 
