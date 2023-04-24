@@ -11,39 +11,25 @@
 		}
 	}
 	$(document).ready(function () {
-		$('#dataTable').DataTable( {
-			
-		
-		} );
-		
+		$('#dataTable').DataTable({
+
+
+		});
+
 		$('#dataTable tbody').on('click', 'tr', function () {
 			$(this).toggleClass('selected');
 		});
-	  });
-	  
-	  
-	  
+	});
+
+
+
 </script>
 
-<div class="search-bar-position">
-	<div class="container search-table">
-		<div class="search-box">
-			<div class="row">
-				<div class="col-md-3">
-					<h5>Search All Fields</h5>
-				</div>
-				<div class="col-md-9">
-					<input type="text" id="myInput" onkeyup="myFunction()" class="form-control"
-						placeholder="Search For UNCC Research Here...">
 
-				</div>
-			</div>
-		</div>
-	</div>
-	<div align="center">
-		<!--Displaying the converted table-->
-		{% for table in tables %}
-		{{ table|safe }}
-		{% endfor %}
-	</div>
-	{% endblock %}
+<div align="center">
+	<!--Displaying the converted table-->
+	{% for table in tables %}
+	{{ table|safe }}
+	{% endfor %}
+</div>
+{% endblock %}
