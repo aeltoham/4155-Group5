@@ -27,6 +27,10 @@ def contact():
 def news():
     return render_template('news.html')
 
+@app.route('/service')
+def service():
+    return render_template('service.html')
+
 
 @app.route('/contact', methods = ['POST'])
 def contactIndex():

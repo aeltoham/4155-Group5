@@ -112,3 +112,8 @@ input[type=submit]:hover {
 .newsList ul li:last-child {
     border-bottom: none
   }
+
+.links{
+    position: relative;
+    top: 30px;
+}
