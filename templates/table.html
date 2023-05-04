@@ -2,32 +2,120 @@
 {% block content %}
 
 <script>
-	function myFunction() {
-		const userInput = document.getElementById("myInput").value.toUpperCase();
-		const tableRows = document.querySelectorAll(".dataTable tr");
-		for (let i = 0; i < tableRows.length; i++) {
-			const rowTextContent = tableRows[i].innerText.toUpperCase();
-			tableRows[i].style.display = rowTextContent.toUpperCase().includes(userInput) ? "" : "none";
+	
+	document.addEventListener("DOMContentLoaded", function(e) {
+		$('#dataTable').DataTable( {
+			aLengthMenu: [
+			[25, 50, 100, 200, -1],
+			[25, 50, 100, 200, "All"]
+		],
+		iDisplayLength: -1,
+		
+        select: {
+            style:    'muti',
+            selector: 'td:first-child'
+        },
+        order: [[ 0, 'asc' ]],
+		select: {
+            style: 'multi'
+        }
+   		
+		} );
+		
+	} );
+	$(".selectAll").on( "click", function(e) {
+		if ($(this).is( ":checked" )) {
+			DT1.rows(  ).select();        
+		} else {
+			DT1.rows(  ).deselect(); 
 		}
-	}
-	$(document).ready(function () {
-		$('#dataTable').DataTable({
-
-
-		});
-
-		$('#dataTable tbody').on('click', 'tr', function () {
-			$(this).toggleClass('selected');
-		});
 	});
+	// Handle click on "Select all" control
 
+	function tableToCSV() {
+ 
+		// Variable to store the final csv data
+		var csv_data = [];
+		header = 'MMS ID (System Identifier),ISBN,Author or Editor,Title,Publisher,Physical Description,Topical'
+		csv_data.push(header);
+		// Get each row data
+		var rows = document.getElementsByClassName('selected');
+		for (var i = 0; i < rows.length; i++) {
 
+			// Get each column data
+			
+			var cols = rows[i].querySelectorAll('td,th');
+
+			// Stores each csv row data
+			var csvrow = [];
+			
+			for (var j = 1; j < cols.length; j++) {
+
+				// Get the text data of each cell
+				// of a row and push it to csvrow
+				csvrow.push('"' + cols[j].innerText + '"');
+			}
+
+			// Combine each column value with comma
+			csv_data.push(csvrow.join(","));
+		}
+
+		// Combine each row data with new line character
+		csv_data = csv_data.join('\n');
+
+		// Call this function to download csv file 
+		downloadCSVFile(csv_data);
+
+	}
+
+	function downloadCSVFile(csv_data) {
+
+		// Create CSV file object and feed
+		// our csv_data into it
+		CSVFile = new Blob([csv_data], {
+			type: "text/csv"
+		});
+
+		// Create to temporary link to initiate
+		// download process
+		var temp_link = document.createElement('a');
+
+		// Download csv file
+		temp_link.download = "UNCCFacultyResearch.csv";
+		var url = window.URL.createObjectURL(CSVFile);
+		temp_link.href = url;
+
+		// This link should not be displayed
+		temp_link.style.display = "none";
+		document.body.appendChild(temp_link);
+
+		// Automatically click the link to
+		// trigger download
+		temp_link.click();
+		document.body.removeChild(temp_link);
+	}
+	function selectAll(){
+		if ($(".selected").length == $("tbody tr").length){
+			$("tbody tr").removeClass("selected");
+		}else{
+			$("tbody tr").addClass("selected");
+		}
+		
+		
+	}
+</script>
 
 </script>
 
 
 <div align="center">
 	<!--Displaying the converted table-->
+	<button type="button" onclick="tableToCSV()">
+		download CSV
+	</button>
+	<button type="button" onclick="selectAll()">
+		select/unselect all
+	</button>
 	{% for table in tables %}
 	{{ table|safe }}
 	{% endfor %}
